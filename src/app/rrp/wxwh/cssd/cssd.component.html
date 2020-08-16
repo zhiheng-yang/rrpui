@@ -1,0 +1,151 @@
+<app-querylist (onQuery)="onquery($event)"></app-querylist>
+<div *ngIf="operation.indexOf(4)!=-1">
+  <nz-table #basicTable [nzData]="robotDatas">
+    <thead>
+    <tr>
+      <th>序号</th>
+      <th>机器人编号</th>
+      <th>机器人名称</th>
+      <th>操作</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.id }}</td>
+      <td>{{ data.robot.id}}</td>
+      <td>{{ data.robot.name }}</td>
+      <td>
+        <button *ngIf="operation.indexOf(3)!=-1" nz-button [nzType]="'primary'" (click)="showModal(data)">
+          <span>修改参数</span></button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+<div><nz-modal class="modal-help" *ngIf="robotData" [(nzVisible)]="isVisible" nzTitle="参数设定"
+                     (nzOnCancel)="handleCancel()" (nzOnOk)="update()">
+  <div>
+    <div style="float: left;  margin-right: 50px">
+      <h2>布料机接料位置</h2>
+      <label>单位（毫米）</label><br>
+      <label>X位置</label><input [(ngModel)]="this.robotData.concretrreceive_coordinate_x"/><br>
+      <label>Y位置</label><input [(ngModel)]="this.robotData.concretrreceive_coordinate_y"/><br>
+      <label>Z位置</label><input [(ngModel)]="this.robotData.concretrreceive_coordinate_z"/><br>
+      <button nz-button [nzType]="'primary'" (click)="update()">设置为接料位置</button>
+      <br><br>
+    </div>
+  </div>
+
+  <div>
+    <div style="float: left;  margin-right: 50px">
+      <h2>布料机软限位</h2>
+      <label>X最小</label><input [(ngModel)]="this.robotData.mincoordinate_x"/><br>
+      <label>Y最小</label><input [(ngModel)]="this.robotData.mincoordinate_y"/><br>
+      <label>Z最小</label><input [(ngModel)]="this.robotData.mincoordinate_z"/><br>
+      <label>X最大</label><input [(ngModel)]="this.robotData.maxcoordinate_x"/><br>
+      <label>Y最大</label><input [(ngModel)]="this.robotData.maxcoordinate_y"/><br>
+      <label>Z最大</label><input [(ngModel)]="this.robotData.maxcoordinate_z"/><br>
+      <label>单位（毫米）</label>
+      <button nz-button [nzType]="'primary'" (click)="update()">确定</button>
+    </div>
+  </div>
+  <div>
+    <div style="float: left;  margin-right: 50px">
+      <h2>布料机零点设置</h2>
+      <label>单位（毫米）</label><br>
+      <label>X位置</label><input [(ngModel)]="this.robotData.encodervalue_zero_X"/><br>
+      <label>Y位置</label><input [(ngModel)]="this.robotData.encodervalue_zero_Y"/><br>
+      <label>Z位置</label><input [(ngModel)]="this.robotData.encodervalue_zero_Z"/><br>
+      <button nz-button [nzType]="'primary'" (click)="setZero()">设置为零点</button>
+      <br><br>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h2>布料机速度设置</h2>
+      <label>下料速度</label><input [(ngModel)]="this.robotData.speed_default"/><br>
+      <label>自动行走速度</label><input [(ngModel)]="this.robotData.target_work_port_v"/><br>
+      <label>手动行走速度</label><input [(ngModel)]="this.robotData.move_speed"/><br>
+      <button nz-button [nzType]="'primary'" (click)="update()">确定</button>
+      <br><br><br>
+    </div>
+  </div>
+
+  <div>
+    <div style="float: left;  margin-right: 10px">
+      <h2>混凝土参数</h2>
+      <label>密度</label><input [(ngModel)]="this.robotData.concrete_density"/><br>
+      <label>塌落度</label><input [(ngModel)]="this.robotData.concrete_angle"/><br>
+      <label>混凝土厚度</label><input [(ngModel)]="this.robotData.concrete_thickness"/><br>
+      <label>落料延迟时间</label><input [(ngModel)]="this.robotData.concrete_delay"/><br>
+      <button nz-button [nzType]="'primary'" (click)="update()">确定</button>
+      <br><br><br>
+    </div>
+
+    <div>
+      <div style="float: left;  margin-right: 10px">
+        <h2>布料机最大速度</h2>
+        <label>X方向最大速度</label><br><input [(ngModel)]="this.robotData.maxv_x"/><br>
+        <label>Y方向最大速度</label><br><input [(ngModel)]="this.robotData.maxv_y"/><br>
+        <label>Z方向最大速度</label><br><input [(ngModel)]="this.robotData.maxv_z"/><br>
+        <label>出料口最大速度</label><br><input [(ngModel)]="this.robotData.maxv_part"/><br>
+        <button nz-button [nzType]="'primary'" (click)="update()">确定</button>
+      </div>
+    </div>
+    <div>
+      <div style="float: left;  margin-right: 10px">
+        <h2>矩形裁剪</h2>
+        <label>X缩减</label><input [(ngModel)]="this.robotData.crop_height_x"/><br>
+        <label>Y缩减</label><input [(ngModel)]="this.robotData.crop_width_y"/><br>
+        <label>反向起点偏移</label><input [(ngModel)]="this.robotData.crop_X_notpositive_distance"/><br>
+        <label>X偏移</label><input [(ngModel)]="this.robotData.port_work_distance_x"/><br>
+        <label>Y偏移</label><input [(ngModel)]="this.robotData.port_work_distance_y"/><br>
+        <label>反向添加重量-X方向长度</label><input [(ngModel)]="this.robotData.reversedweight_length"/><br>
+        <label>正向添加重量-X方向长度</label><input [(ngModel)]="this.robotData.reversedweight_lengthpositive"/><br>
+        <button nz-button [nzType]="'primary'" (click)="update()">确定</button>
+      </div>
+    </div>
+    <div>
+      <h2>模台零点设置</h2>
+      <label>模台偏移量</label><br><input [(ngModel)]="this.robotData.enddistance"/><br>
+      <button nz-button [nzType]="'primary'" (click)="setZero1()">设置为零点</button>
+      <br><br><br><br><br><br><br>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <div style="float: left;  margin-right: 50px">
+        <h2>振捣系统</h2>
+        <label>振动时间</label><input [(ngModel)]="this.robotData. vibrate_time"/><br>
+        <label>振动频率</label><input [(ngModel)]="this.robotData. vibration_frequency_1"/><br>
+        <button nz-button [nzType]="'primary'" (click)="update()">确定</button>
+      </div>
+    </div>
+    <div>
+      <div style="float: left;  margin-right: 50px">
+        <h2>布料机润滑</h2>
+        <label>润滑时间</label><input [(ngModel)]="this.robotData.time_lubrication"/><br>
+        <label>间隔时间</label><input [(ngModel)]="this.robotData.Intervals_lubrication"/><br>
+        <button nz-button [nzType]="'primary'" (click)="update()">确定</button>
+      </div>
+    </div>
+    <div>
+      <div style="float: left;  margin-right: 50px">
+        <h2>振动台振动输出</h2>
+        <button nz-button [nzType]="'primary'" (click)="shake1()">振动输出1</button>
+        <br>
+        <button nz-button [nzType]="'primary'" (click)="shake2()">振动输出2</button>
+        <br>
+        <button nz-button [nzType]="'primary'" (click)="shake3()">振动输出3</button>
+        <br>
+        <button nz-button [nzType]="'primary'" (click)="shake4()">振动输出4</button>
+        <br>
+      </div>
+    </div>
+  </div>
+</nz-modal></div>
+
+
+

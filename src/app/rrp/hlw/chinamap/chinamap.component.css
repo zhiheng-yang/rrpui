@@ -1,0 +1,17 @@
+.left{
+  width: 70%;
+  float: left;
+  display: inline-block;
+}
+.right{
+  margin-top: 32px;
+  margin-right:48px;
+  width: 20%;
+  float: right;
+  color: #e1e1e1;
+  display: inline-block;
+}
+#map{height:500px;}
+#map canvas{
+  box-shadow: 0 0 10px rgba(255,255,255,.2);
+}

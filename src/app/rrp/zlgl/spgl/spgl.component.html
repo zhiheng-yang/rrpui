@@ -1,0 +1,124 @@
+<app-querylist (onQuery)="onquery($event)"></app-querylist>
+<nz-table #Table [nzData]="approvals">
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>布料机器人名称</th>
+    <th>唯一标识</th>
+    <th>租赁企业</th>
+    <th>审批请求</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of Table.data">
+    <td>{{ Table.data.indexOf(data) + 1 }}</td>
+    <td>{{ data.robot.name }}</td>
+    <td>{{ data.robot.id}}</td>
+    <td>{{ data.lease.companyId.name}}</td>
+    <td>{{ data.request}}</td>
+    <td>
+      <button nz-button [nzType]="'primary'" (click)="confirm(data)"><span>确认</span></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button (click)="reject(data)">驳回</button>
+      <nz-divider *ngIf="data.request==='续费审核'" nzType="vertical"></nz-divider>
+      <button *ngIf="data.request==='续费审核'" nz-button (click)="showModa(data)">详情</button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="详情" (nzOnCancel)="handleCancel()" (nzOnOk)="handleCancel()">
+  <form nz-form *ngIf="isVisible">
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">机器人所属企业</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true" nz-input name="company" [(ngModel)]="approval.robot.belongingCompany.name" />
+        </nz-form-control>
+      </nz-form-item >
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">机器人名称</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true" nz-input name="robotname" [(ngModel)]="approval.robot.name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">唯一标识</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true" nz-input name="robotid" [(ngModel)]="approval.robot.id" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">租用公司</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true" nz-input name="company1" [(ngModel)]="approval.lease.companyId.name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">合同编号</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true" nz-input name="contractId" [(ngModel)]="approval.lease.contractId" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+<!--    <div nz-row>-->
+<!--      <nz-form-item>-->
+<!--        <nz-form-label [nzSpan]="6">合同时间</nz-form-label>-->
+<!--        <nz-form-control>-->
+<!--          <nz-range-picker [disabled]="true"  name="dateRange" [(ngModel)]="dateRange" ></nz-range-picker>-->
+<!--        </nz-form-control>-->
+<!--      </nz-form-item>-->
+<!--    </div>-->
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">月费用</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true" nz-input name="costMonth" [(ngModel)]="approval.lease.costMonth" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">缴费方式</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true"  nz-input name="costWay" [(ngModel)]="approval.lease.costWay" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">缴费日期</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true"  nz-input name="paymentTime" [(ngModel)]="pay.paymentTime" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">缴费金额</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true"  nz-input name="paymentAmount" [(ngModel)]="pay.paymentAmount" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">缴费截止日期</nz-form-label>
+        <nz-form-control>
+          <input [disabled]="true"  nz-input name="paymentDeadline" [(ngModel)]="pay.paymentDeadline" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+
+  </form>
+</nz-modal>

@@ -1,0 +1,95 @@
+<div *ngIf="operation.indexOf(4)!=-1">
+<app-querylist (onQuery)="onquery($event)"></app-querylist>
+<button *ngIf="operation.indexOf(1)!=-1" class="topbutton" (click)="showModal1()"><span>增加</span></button>
+<nz-modal [(nzVisible)]="isVisible1" nzTitle="增加" (nzOnCancel)="handleCancel1()" (nzOnOk)="add()">
+  <form nz-form *ngIf="isVisible1">
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">模台编号</nz-form-label>
+        <nz-form-control>
+          <input nz-input name="number" [(ngModel)]="number" />
+        </nz-form-control>
+      </nz-form-item >
+    </div>
+
+
+
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">产线</nz-form-label>
+        <nz-form-control>
+          <input nz-input name="workshop" [(ngModel)]="workshop" />
+        </nz-form-control>
+      </nz-form-item >
+    </div>
+
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">隶属机器人</nz-form-label>
+        <nz-form-control>
+          <nz-select [(ngModel)]="robot" name="robot">
+            <!--ngValue支持对象，value仅支持字符串-->
+            <nz-option *ngFor="let obj of robots" [nzValue]="obj" [nzLabel]="obj.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item >
+    </div>
+    <div nz-row>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">说明信息</nz-form-label>
+        <nz-form-control>
+          <input  nz-input name="des" [(ngModel)]="des" />
+        </nz-form-control>
+      </nz-form-item >
+    </div>
+  </form>
+</nz-modal>
+
+<nz-table #basicTable [nzData]="benchs" >
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>模台编号</th>
+    <th>隶属机器人</th>
+    <th>产线</th>
+    <th>说明信息</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.id }}</td>
+    <td>{{ data.number }}</td>
+    <td>{{ data.robot.name}}</td>
+    <td>{{ data.workshop}}</td>
+    <td>{{ data.description}}</td>
+    <td>
+      <button *ngIf="operation.indexOf(2)!=-1" nz-button [nzType]="'primary'" (click)="delete(data)"><span>删除</span></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button *ngIf="operation.indexOf(3)!=-1" nz-button [nzType]="'primary'" (click)="showModal(data)"><span>修改</span></button>
+    </td>
+
+  </tr>
+  </tbody>
+</nz-table>
+<nz-modal *ngIf="bench" [(nzVisible)]="isVisible" nzTitle="修改" (nzOnCancel)="handleCancel()" (nzOnOk)="update()">
+  <div>
+  <div>
+    <label>模台编号:&nbsp;</label> <input nz-input [(ngModel)]="bench.number"/>
+  </div>
+  <div style="margin-top: 8px">
+    <label>说明信息:&nbsp;</label> <input nz-input [(ngModel)]="bench.description"/>
+  </div>
+    <div style="margin-top: 8px">
+    <label>工作车间:&nbsp;</label> <input nz-input [(ngModel)]="bench.workshop"/>
+  </div>
+    <div style="margin-top: 8px">
+    <label>隶属机器人:&nbsp;</label>
+      <select [(ngModel)]="bench.robot" [compareWith]="compareFn">
+        <option *ngFor="let obj of robots" [ngValue]="obj" >{{obj.name}}</option>
+      </select>
+  </div>
+
+  </div>
+</nz-modal>
+</div>

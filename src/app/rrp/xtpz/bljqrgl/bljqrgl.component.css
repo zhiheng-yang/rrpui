@@ -1,0 +1,84 @@
+#form2 nz-date-picker{
+  width: 250px;
+}
+#form2 nz-range-picker{
+  width: 200px;
+}
+#form2 nz-select {
+  margin-right: 8px;
+  width: 200px;
+}
+#form2 .ant-input {
+  width: 200px;
+}
+#form2 nz-upload{
+  width: 200px;
+}
+#form2 .ant-calendar-picker-input.ant-input {
+  line-height: 1.5;
+  width: 200px!important;
+}
+#form2 .model-left{
+  width: 40%;
+
+}
+#form2 .model-right{
+  width: 50%;
+  float: right;
+}
+#form1 nz-date-picker{
+  width: 250px;
+}
+#form1 nz-range-picker{
+  width: 200px;
+}
+#form1 nz-select {
+  margin-right: 8px;
+  width: 200px;
+}
+#form1 .ant-input {
+  width: 200px;
+}
+#form1 nz-upload{
+  width: 200px;
+}
+#form1 .ant-calendar-picker-input.ant-input {
+  line-height: 1.5;
+  width: 200px!important;
+}
+#form1 .model-left{
+  width: 40%;
+
+}
+#form1 .model-right{
+  width: 50%;
+  float: right;
+}
+#form3 nz-date-picker{
+  width: 250px;
+}
+#form3 nz-range-picker{
+  width: 200px;
+}
+#form3 nz-select {
+  margin-right: 8px;
+  width: 200px;
+}
+#form3 .ant-input {
+  width: 200px;
+}
+#form3 nz-upload{
+  width: 200px;
+}
+#form3 .ant-calendar-picker-input.ant-input {
+  line-height: 1.5;
+  width: 200px!important;
+}
+#form3 .model-left{
+  width: 40%;
+
+}
+#form3 .model-right{
+  width: 50%;
+  float: right;
+}

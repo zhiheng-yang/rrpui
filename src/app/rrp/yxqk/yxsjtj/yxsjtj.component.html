@@ -1,0 +1,64 @@
+<div style="float: left ;margin-right: 3px; width: 48%">
+
+  <div>
+    <br><p><b>历史运行数据</b></p><button class="topbutton" [value]="this.value" (click)="getValueOpen()">开机时长</button>
+    &nbsp;&nbsp;<button class="topbutton"  [value]="this.value" (click)="getValueRun()">运行时长</button>
+    &nbsp;&nbsp;<button class="topbutton"  [value]="this.value" (click)="getValueWait()">待机时长</button>
+    &nbsp;&nbsp;<button class="topbutton"  [value]="this.value" (click)="getValueWarn()">故障时长</button>
+  </div>
+  <nz-date-picker [nzFormat]="dateFormat" [(ngModel)]=begin nzSize="small" nzPlaceHolder="开始日期"></nz-date-picker>  &nbsp;&nbsp;
+  <nz-date-picker [nzFormat]="dateFormat" [(ngModel)]=end nzSize="small" nzPlaceHolder="结束日期"></nz-date-picker>
+  &nbsp;&nbsp;&nbsp;<Button class="topbutton"  (click)="getYxsjtj()">搜索</Button>
+  <div id="container" style="width:100%; height: 300px; margin-top: 10px; margin-left: 10px;"></div>
+<br>
+
+  <nz-table #basicTable [nzData]="runs">
+    <thead>
+    <tr>
+      <th>开机时长</th>
+      <th>运行时长</th>
+      <th>待机时长</th>
+      <th>故障时长</th>
+      <th>日期</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.open}}</td>
+      <td>{{ data.run}}</td>
+      <td>{{ data.wait}}</td>
+      <td>{{ data.warn}}</td>
+      <td>{{ data.time | date:'yyyy.MM.dd'}}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+</div>
+
+<div style="float: right;margin-right: 10px; width: 46%">
+  <br><p><b>历史故障数据</b></p>
+  <nz-date-picker [nzFormat]="dateFormat" [(ngModel)]=begin nzSize="small" nzPlaceHolder="开始日期"></nz-date-picker>
+  <nz-date-picker [nzFormat]="dateFormat" [(ngModel)]=end nzSize="small" nzPlaceHolder="结束日期"></nz-date-picker>
+  &nbsp;&nbsp;&nbsp;<Button class="topbutton" (click)="getYxsjtj()">搜索</Button>
+
+  <nz-table #basicTable2 [nzData]="warnings">
+    <thead>
+    <tr>
+      <th>报警号</th>
+      <th>报警位置</th>
+      <th>报警内容</th>
+      <th>报警时间</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable2.data">
+      <td>{{ data.id}}</td>
+      <td>{{ data.run}}</td>
+      <td>{{ data.wait}}</td>
+      <td>{{ data.time | date:'yyyy.MM.dd'}}</td>
+      <td><button nz-button>详情</button></td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -1,0 +1,40 @@
+<div class="select">
+    <div style="padding: 0 8px;">
+        <div class="btn">
+          <a  (click)="toggleCollapse()" style="color: #000; text-shadow:0 0 3px #f0f2f5;margin-top:3px;">
+            {{isCollapse ? '展开' : '收起'}}
+            <i style="color: #1F1F1F" [type]="isCollapse ? 'down' : 'up'" nz-icon></i>
+          </a>
+          <label  style=" font-size: 12px; margin-right: 10px; float:right;">{{company.name}}</label>
+        </div>
+    </div>
+    <div
+    [ngStyle]="{'display':!isCollapse?'block':'none'}" style="padding: 2px 8px 0px 8px !important; clear:right">
+    <div nz-row>
+      <div style="display: inline-block">
+
+        <nz-select nzSize="small" *ngIf="company.companyType.id!==3 && company.companyType.id!==4 " [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)"
+                   [nzAllowClear]="true" [nzShowSearch]="true" nzPlaceHolder="请选择省份">
+          <nz-option *ngFor="let p of ProvinceData" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+        </nz-select>
+        <nz-select nzSize="small" *ngIf="company.companyType.id!==3 &&company.companyType.id!==4 " [(ngModel)]="selectedCity" (ngModelChange)="cityChange($event)"
+                   [nzAllowClear]="true" [nzShowSearch]="true" nzPlaceHolder="请选择市">
+          <nz-option nzSize="small" *ngFor="let c of CityData" [nzValue]="c" [nzLabel]="c.name"></nz-option>
+        </nz-select>
+        <nz-select nzSize="small" *ngIf="company.companyType.id!==3 &&company.companyType.id!==4 " [(ngModel)]="selectedCompany" (ngModelChange)="CompanyChange($event)"
+                   [nzAllowClear]="true" [nzShowSearch]="true" nzPlaceHolder="请选择企业">
+          <nz-option *ngFor="let p of CompanyData" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+        </nz-select>
+
+        <nz-select nzSize="small" *ngIf="robotVisible" [(ngModel)]="selectedRobot" (ngModelChange)="RobotChange($event)"
+                   [nzAllowClear]="true"  [nzShowSearch]="true"  nzPlaceHolder="请选择机器人">
+          <nz-option *ngFor="let p of RobotData" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+        </nz-select>
+        <nz-date-picker class="date"*ngIf="dateVisible" [(ngModel)]="startdate"  nzSize="small" nzPlaceHolder="开始日期"></nz-date-picker>
+        <nz-date-picker class="date" nzSize="small" *ngIf="dateVisible" [(ngModel)]="enddate" nzPlaceHolder="结束日期"></nz-date-picker>
+      </div>
+      <button class="topbutton" (click)="query()">查询</button>
+      <button class="topbutton" (click)="reset()">清空</button>
+    </div>
+  </div>
+</div>

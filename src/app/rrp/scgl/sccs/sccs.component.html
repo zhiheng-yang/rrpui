@@ -1,0 +1,62 @@
+<div *ngIf="operation.indexOf(4)!=-1">
+  <nz-modal class="modal-help" [(nzVisible)]="isVisible" (nzOnCancel)="isVisible=false" nzMaskClosable=false
+            [nzTitle]="'参数设定'">
+
+    <div *ngIf="processData">
+      <div>
+        <div style="border: 1.5px; float: left;  margin-right: 50px">
+          <h2>混凝土参数</h2>
+          <label nz-tab-label>密度:&nbsp;</label> <label><input
+          [(ngModel)]="processData.concrete_density"/></label>千克/m³<br>
+          <label>塌落度:&nbsp;</label> <label><input [(ngModel)]="processData.concrete_angle"/></label><br>
+          <label>混凝土厚度:&nbsp;</label> <label><input [(ngModel)]="processData.concrete_thickness"/></label>毫米<br>
+          <label>落料延迟时间:&nbsp;</label> <label><input [(ngModel)]="processData.concrete_delay"/></label>秒<br>
+          <button nz-button [nzType]="'primary'" (click)="save()">确定</button>
+        </div>
+
+        <div style="border: 2px #1890ff;">
+          <h2>布料机零点设置</h2>
+          <label>X位置:&nbsp;</label> <label><input [(ngModel)]="processData.zero_X"/></label><br>
+          <label>Y位置:&nbsp;</label> <label><input [(ngModel)]="processData.zero_Y"/></label><br>
+          <label>Z位置:&nbsp;</label> <label><input [(ngModel)]="processData.zero_Z"/></label><br>
+          <label>单位（毫米）&nbsp;&nbsp;
+            <button nz-button [nzType]="'primary'" (click)="setZero()">设置为零点</button>
+          </label>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div>
+        <div style="border: 2px #1890ff;float: left;margin-right: 50px">
+          <h2>接料位置</h2>
+          <label>X位置:&nbsp;</label> <label><input [(ngModel)]="processData.concretrreceive_coordinate_x"/></label><br>
+          <label>Y位置:&nbsp;</label> <label><input [(ngModel)]="processData.concretrreceive_coordinate_y"/></label><br>
+          <label>Z位置:&nbsp;</label> <label><input [(ngModel)]="processData.concretrreceive_coordinate_z"/></label><br>
+          <label>单位（毫米）&nbsp;&nbsp;
+            <button nz-button [nzType]="'primary'" (click)="save()">设置为接料位置</button></label>
+        </div>
+
+        <div style="border: 2px #1890ff;float: left;margin-right: 50px">
+          <h2>模台零点设置</h2>
+          <label>模台零点设置 :&nbsp;</label> <label><input [(ngModel)]="processData.enddistance"/></label><br>
+          <button nz-button [nzType]="'primary'" (click)="setZero1()">设置为零点</button><br><br><br>
+        </div>
+
+        <div style="border: 2px #1890ff;">
+          <h2>矩形裁剪</h2>
+          <label>X缩减:&nbsp;</label> <label><input [(ngModel)]="processData.crop_width_y"/></label><br>
+          <label>Y缩减:&nbsp;</label> <label><input [(ngModel)]="processData.crop_height_x"/></label><br>
+          <label>反向起点偏移:&nbsp;</label> <label><input [(ngModel)]="processData.crop_X_notpositive_distance"/></label><br>
+          <button nz-button [nzType]="'primary'" (click)="save()">确定</button>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div *nzModalFooter>
+      <button nz-button style="float: left" (click)="goBack()">返回</button>
+      <button nz-button [nzType]="'primary'" (click)="save()">保存</button>
+    </div>
+
+
+  </nz-modal>
+</div>

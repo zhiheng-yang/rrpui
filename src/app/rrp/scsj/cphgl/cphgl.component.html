@@ -1,0 +1,26 @@
+<!--&nbsp;&nbsp;&nbsp;-->
+<!--<legend>统计设置</legend>-->
+<!--<div>-->
+<!--  <div>-->
+<!--    <div>-->
+<!--      <label>请选择企业:</label>&nbsp;&nbsp;&nbsp;-->
+<!--      <nz-select [(ngModel)]="selectedCompany" (ngModelChange)="CompanyChange($event)" nzPlaceHolder="请选择企业">-->
+<!--        <nz-option *ngFor="let p of CompanyData" [nzValue]="p" [nzLabel]="p.name"></nz-option>-->
+<!--      </nz-select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--      <label>请选择机器人:</label>&nbsp;&nbsp;&nbsp;-->
+<!--      <nz-select [(ngModel)]="selectedRobot" (ngModelChange)="RobotChange($event)" nzPlaceHolder="请选择机器">-->
+<!--        <nz-option *ngFor="let p of RobotData" [nzValue]="p" [nzLabel]="p.name"></nz-option>-->
+<!--      </nz-select>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--&nbsp;&nbsp;&nbsp;开始时间：&nbsp;-->
+<!--<nz-date-picker [nzFormat]="dateFormat" [(ngModel)]=begin></nz-date-picker>-->
+<!--&nbsp;&nbsp;&nbsp;截止时间：&nbsp;-->
+<!--<nz-date-picker [nzFormat]="dateFormat" [(ngModel)]=end></nz-date-picker>-->
+<!--&nbsp;&nbsp;&nbsp;-->
+<!--<Button nz-button (click)="getCphgl()">搜索</Button>-->
+<!--<div id="container" style="width: 1500px; height: 600px; margin-top: 70px; margin-left: 20px;"></div>-->
+
+<app-querylist (onQuery)="onquery($event)" [dateVisible]="true"></app-querylist>
+<div id = "container" style="width: 100%; height: 80%; margin-top: 10px; "></div>

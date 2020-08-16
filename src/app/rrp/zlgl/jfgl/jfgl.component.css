@@ -1,0 +1,19 @@
+nz-date-picker{
+  width: 250px;
+}
+nz-range-picker{
+  width: 200px;
+}
+nz-select {
+  margin-right: 8px;
+  width: 200px;
+}
+.ant-input {
+  width: 200px;
+}
+nz-upload{
+  width: 200px;
+}
+.ant-calendar-picker-input.ant-input {
+  width: 200px;
+}

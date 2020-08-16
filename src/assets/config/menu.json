@@ -1,0 +1,183 @@
+[
+  {
+    "title": "互联网",
+    "icon": "ie",
+    "key": "1",
+    "display": true,
+    "url": "/index/rpit/chinamap",
+    "isLeaf": true
+  },
+  {
+    "title": "生产数据",
+    "icon": "pie-chart",
+    "key": "2",
+    "display": true,
+    "children": [
+      {
+        "title": "模台个数",
+        "url": "/index/rpit/demo",
+        "key": "201",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "模台利用率",
+        "url": "/index/rppd/2",
+        "key": "201",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "混凝土方量",
+        "url": "/index/rppd/3",
+        "key": "201",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "叠合板数量",
+        "url": "/index/rppd/4",
+        "key": "201",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "叠合板面积",
+        "url": "/index/rppd/5",
+        "key": "201",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "产品合格率",
+        "url": "/index/rppd/6",
+        "key": "201",
+        "display": true,
+        "isLeaf": true
+      }
+    ]
+  },
+  {
+    "title": "生产管理",
+    "key": "3",
+    "icon": "book",
+    "display": true,
+    "url": "/index/rppm/productionmanage"
+  },
+  {
+    "title": "运行情况",
+    "key": "4",
+    "icon": "book",
+    "display": true,
+    "children": [
+      {
+        "title": "设备运行状态",
+        "url": "/index/rprs/1",
+        "key": "401",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "运行数据统计",
+        "url": "/index/rprs/2",
+        "key": "402",
+        "display": true,
+        "isLeaf": true
+      }
+    ]
+  },
+  {
+    "title": "维修维护",
+    "key": "5",
+    "icon": "book",
+    "display": true,
+    "children": [
+      {
+        "title": "参数设定",
+        "url": "/index/rpmt/1",
+        "key": "401",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "远程软件升级",
+        "url": "/index/rpmt/2",
+        "key": "402",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "软件升级",
+        "url": "/index/rpmt/3",
+        "key": "403",
+        "display": true,
+        "isLeaf": true
+      }
+    ]
+  },
+  {
+    "title": "租赁管理",
+    "key": "6",
+    "icon": "book",
+    "display": true,
+    "children": [
+      {
+        "title": "租赁管理",
+        "url": "/index/rprm/1",
+        "key": "601",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "缴费管理",
+        "url": "/index/rprm/2",
+        "key": "602",
+        "display": true,
+        "isLeaf": true
+      }
+    ]
+  },
+  {
+    "title": "系统配置",
+    "key": "7",
+    "icon": "apartment",
+    "display": true,
+    "children": [
+      {
+        "title": "布料机器人管理",
+        "url": "/index/rpsc/1",
+        "key": "601",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "企业管理",
+        "url": "/index/rpsc/2",
+        "key": "602",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "用户管理",
+        "url": "/index/rpsc/3",
+        "key": "602",
+        "display": true,
+        "isLeaf": true
+      },
+      {
+        "title": "角色管理",
+        "url": "/index/rpsc/4",
+        "key": "602",
+        "display": true,
+        "isLeaf": true
+      }
+    ]
+  },
+  {
+    "title": "使用指南",
+    "key": "8",
+    "display": true,
+    "icon": "book",
+    "url": "/index/help/1"
+  }
+]

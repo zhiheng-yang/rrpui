@@ -1,0 +1,103 @@
+<nz-layout #layout style="height: 100%;overflow-y: hidden">
+  <nz-header #header >
+    <div class="header">
+      <div id="logo"></div>
+      <div id="icon">
+        <span (click)="isCollapsed = !isCollapsed" nz-tooltip nzPlacement="bottom"  nzTitle="折叠左菜单">
+           <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'">
+           </i>
+        </span>
+        <span (click)="activemenus=[]; navigateTo(home)"  nz-tooltip nzPlacement="bottom"  nzTitle="首页">
+          <i class="trigger" nz-icon nzType="home" nzTheme="outline"></i>
+        </span>
+        <span (click)="fullScreen()" *ngIf="!showALL"  nz-tooltip nzPlacement="bottom" nzTitle="全屏切换">
+          <i class="trigger" nz-icon nzType="fullscreen" nzTheme="outline"></i>
+        </span>
+          <span (click)="exitFullScreen()" *ngIf="showALL"  nz-tooltip nzPlacement="bottom" nzTitle="全屏切换">
+          <i class="trigger" nz-icon nzType="fullscreen-exit" nzTheme="outline"></i>
+        </span>
+      </div>
+      <div id="mainNav">
+          <ul  class="nav"  >
+            <li class="menu" *ngFor="let a of menus;let i = index;" (click)="showSubMenu(a ,i-1); navigateTo(a.children[0]);" (mouseleave)="notShowSubMenu(a, i)">
+              <span >{{a.title}}</span>
+              <dl class="jnNav" *ngIf="a.hasOwnProperty('children') && a.children"  [ngStyle]="{'display': a.showSubMenu ? 'block':'none','margin-left': '-2.6rem'}" >
+                <dd *ngFor="let b of a.children" (click)="navigateTo(b)">
+                  {{b.title}}
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        <div id="user">
+          <nz-avatar  [nzDropdownMenu]="user" nz-dropdown nzPlacement="bottomRight"
+                     nzSrc="/assets/src/img/touxiang_.jpg"
+                     style="margin-right: 4px;margin-bottom:8px;cursor:pointer;display: inline-block;font-size: 16px;height: 36px;width: 36px">
+          </nz-avatar>
+          <span class="header-trigger" *ngIf="info" style="margin-right: 4px; dispay:inline-block; width:80px"> {{info}} </span>
+        </div>
+      </div>
+  </nz-header>
+  <nz-layout style="height: calc(100% - 52px);  ">
+    <nz-sider [nzWidth]="180" [nzTheme]="theme"  nzCollapsible
+              nzBreakpoint="md" class="out-div" [(nzCollapsed)]="isCollapsed"
+              [nzTrigger]="null"  *ngIf="activemenus.length>1">
+        <ul *ngIf="activemenus.length>1">
+             <li *ngFor="let b of activemenus" (click)="navigateTo(b)">
+                {{b.title}}
+              </li>
+        </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout" >
+      <span *ngIf="activeMenuname" style="background: #2e3659; width:100%; font-weight:bolder; padding:2px 0 2px 5px;
+         border-radius:10px 10px 0 0;margin-bottom: 0;border:2px solid #2e3659">{{activeMenuname}}</span>
+      <nz-content style="width: 100%;height: calc(100% - 48px);overflow-y: auto;
+       margin: 0;  border:2px solid #2e3659">
+        <router-outlet (voted)="doSomething($event)"> </router-outlet>
+        <!--<app-child (voted)="doSomething($event)"> </app-child>-->
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+<nz-dropdown-menu #user="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item (click)="logout()">
+      <i style="margin-right: 8px;font-size: 16px" nz-icon nzType="logout" nzTheme="outline"></i>
+      <span style="font-size: 14px">注销</span>
+    </li>
+    <li nz-menu-item (click)="showModal()">
+      <i style="margin-right: 8px;font-size: 16px" nz-icon nzType="logout" nzTheme="outline"></i>
+      <span style="font-size: 14px">修改密码</span>
+    </li>
+  </ul>
+
+</nz-dropdown-menu>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="add" (nzOnCancel)="handleCancel()" (nzOnOk)="changePassword(newPassword1, newPassword2)">
+  <label>请输入密码：</label><input type="password" #newPassword1 /><br>
+  <label>请再次输入密码</label><input type="password" #newPassword2 /><br>
+<!--  <nz-form-item >-->
+<!--    <nz-form-control>-->
+<!--      <nz-input-group nzPrefixIcon="user">-->
+<!--        <input type="text" nz-input formControlName="username" placeholder="用户名" />-->
+<!--      </nz-input-group>-->
+<!--      <nz-form-explain *ngIf="validateForm.get('username')?.dirty && validateForm.get('username')?.errors"-->
+<!--      >请输入用户名-->
+<!--      </nz-form-explain-->
+<!--      >-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+<!--  <nz-form-item >-->
+<!--    <nz-form-control>-->
+<!--      <nz-input-group nzPrefixIcon="lock">-->
+<!--        <input type="password" nz-input formControlName="password" placeholder="密码" />-->
+<!--      </nz-input-group>-->
+<!--      <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors"-->
+<!--      >请输入密码-->
+<!--      </nz-form-explain-->
+<!--      >-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+
+</nz-modal>
+

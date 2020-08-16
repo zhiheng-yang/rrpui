@@ -1,0 +1,122 @@
+<app-querylist #querylist (onQuery)="onquery($event)" [cache]="true"></app-querylist>
+<div>
+  <div style="width:200px; height:700px; float:left;margin:10px;">
+    <div style="height:160px; border-radius: 5px;padding:5px; background:#191b30;">
+      <div style="border-radius: 5px; height:90%; border:1px solid #5d74c4; margin-top:10px; position: relative">
+        <div style="border: 9px solid transparent; border-right: 9px solid #5d74c4;  width:0; height:0;
+          display:inline-block; position: absolute; top:-10px; left:-18px;"></div>
+        <span style="position: absolute; top:-10px;font-weight:bolder; left:0;
+        background: linear-gradient(to right, #5d74c4, #191b30)">产线基本介绍 </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin-left:10px; margin-top:20px; padding:1px 5px;">产线名称: {{shengchanxian}}</span>
+        <span style="background: linear-gradient(to right, #191b30,#5d74c4);display:inline-block;
+          width:90%; height:10px; border:0; margin:0 0 0 10px; "> </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin:0 0 0 10px; padding:1px 5px;">生产状态: 正常</span>
+        <span style="background: linear-gradient(to right, #191b30,#5d74c4);display:inline-block;
+          width:90%; height:10px; border:0; margin:0 0 0 10px; padding:1px 5px;"> </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin:0 0 0 10px; padding:1px 5px;">负责人: {{connector}}</span>
+      </div>
+    </div>
+    <div style="height:100px; border-radius: 5px;padding:5px; background:#191b30; margin-top: 10px">
+      <div style="border-radius: 5px; height:90%; border:1px solid #5d74c4; margin-top:10px; position: relative">
+        <div style="border: 9px solid transparent; border-right: 9px solid #5d74c4;  width:0; height:0;
+        display:inline-block; position: absolute; top:-10px; left:-18px;"></div>
+        <span style="position: absolute; top:-10px;font-weight:bolder; z-index:2;
+        background: linear-gradient(to right, #5d74c4, #191b30);left:0;">
+          今日产能安排 </span>
+        <div style="width:30%; height:70%; margin-top:15px; padding:1px;
+        border-right:1px solid #5d74c4; text-align: center; float:left">模台数量<br>
+          <span style="font:18px border; color: dodgerblue">{{benchNum}}</span>块
+        </div>
+        <div style="width:35%; height:70%; margin-top:15px; padding:1px;
+        border-right:1px solid #5d74c4; text-align: center;float:left">叠合板数量<br>
+          <span style="font:18px border; color: dodgerblue">{{boardNum}}</span>块
+        </div>
+        <div style="width:34%; height:70%; margin-top:10px; padding:1px;
+         text-align: center;float:left">混凝土方量<br>
+          <span style="font:18px border; color: dodgerblue">{{conCount}}</span>m<sup>2</sup>
+        </div>
+      </div>
+    </div>
+    <div style="height:200px; border-radius: 5px;padding:5px; background:#191b30; margin-top: 10px">
+        <div style="border-radius: 5px; height:90%; border:1px solid #5d74c4; margin-top:10px; position: relative">
+          <div style="border: 9px solid transparent; border-right: 9px solid #5d74c4;  width:0; height:0;
+        display:inline-block; position: absolute; top:-10px; left:-18px;"></div>
+          <span style="position: absolute; top:-10px;font-weight:bolder; z-index:2;
+        background: linear-gradient(to right, #5d74c4, #191b30);left:0;">
+          今日已浇筑生产 </span>
+          <div style="width:49%; height:40%; margin-top:30px; padding:1px;
+        border-right:1px solid #5d74c4; text-align: center; float:left">模台数量<br>
+            <span style="font:18px border; color: dodgerblue">{{benchNum}}</span>块
+          </div>
+          <div style="width:50%; height:40%; margin-top:30px; padding:1px; text-align: center;float:left">叠合板数量<br>
+            <span style="font:18px border; color: dodgerblue">{{boardNum}}</span>块
+          </div>
+          <hr style="color:#5d74c4; width: 60%; float: left;margin-left:20px">
+          <div style="width:49%; height:50%; margin-top:30px; padding:1px; text-align: center;float:left">
+            混凝土方量
+          </div>
+          <div style="width:49%; height:60%; margin-top:30px; padding:1px; text-align: center;float:left">
+            待浇筑方量
+          </div>
+        </div>
+      </div>
+
+
+
+
+    <div style="height:160px; border-radius: 5px;padding:5px; background:#191b30; left: 100px">
+      <div style="border-radius: 5px; height:90%; border:1px solid #5d74c4; margin-top:10px; position: relative">
+        <div style="border: 9px solid transparent; border-right: 9px solid #5d74c4;  width:0; height:0;
+          display:inline-block; position: absolute; top:-10px; left:-18px;"></div>
+        <span style="position: absolute; top:-10px;font-weight:bolder; left:0;
+        background: linear-gradient(to right, #5d74c4, #191b30)">工艺流程 </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin-left:10px; margin-top:20px; padding:1px 5px;">模台进入: {{mtjr}}</span>
+        <span style="background: linear-gradient(to right, #191b30,#5d74c4);display:inline-block;
+          width:90%; height:10px; border:0; margin:0 0 0 10px; ">扫描识别：{{smsb}} </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin:0 0 0 10px; padding:1px 5px;">智能布料：{{znbl}}</span>
+        <span style="background: linear-gradient(to right, #191b30,#5d74c4);display:inline-block;
+          width:90%; height:10px; border:0; margin:0 0 0 10px; padding:1px 5px;">振捣密室：{{zdms}} </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin:0 0 0 10px; padding:1px 5px;">模台驶出: {{ntsc}}</span>
+      </div>
+    </div>
+
+
+    <div style="height:160px; border-radius: 5px;padding:5px; background:#191b30;">
+      <div style="border-radius: 5px; height:90%; border:1px solid #5d74c4; margin-top:10px; position: relative">
+        <div style="border: 9px solid transparent; border-right: 9px solid #5d74c4;  width:0; height:0;
+          display:inline-block; position: absolute; top:-10px; left:-18px;"></div>
+        <span style="position: absolute; top:-10px;font-weight:bolder; left:0;
+        background: linear-gradient(to right, #5d74c4, #191b30)">设备状态 </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin-left:10px; margin-top:20px; padding:1px 5px;">大车行走: {{dcxz}}</span>
+        <span style="background: linear-gradient(to right, #191b30,#5d74c4);display:inline-block;
+          width:90%; height:10px; border:0; margin:0 0 0 10px; ">小车行走：{{xcxz}} </span>
+        <span style="background: linear-gradient(to right, #5d74c4, #191b30);display:inline-block;
+          width:90%; margin:0 0 0 10px; padding:1px 5px;">智能布料：{{znbl1}}</span>
+        <span style="background: linear-gradient(to right, #191b30,#5d74c4);display:inline-block;
+          width:90%; height:10px; border:0; margin:0 0 0 10px; padding:1px 5px;">振动平台：{{zdpt}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div style="width:530px; height:450px; float:left;margin:10px; padding:0; border-radius: 5px;  border:1px solid #5d74c4;">
+    <span style="background: #2e3659; display:inline-block; width:530px; font-weight:bolder; padding:2px 0 2px 5px;
+         border-radius:5px 5px 0 0;margin-bottom: 0;">生产监控</span>
+    <video [src]="" controls="controls" width="260" height="200"
+           style="border:1px solid #aaa; margin-left:5px;"> </video>
+    <video [src]="" controls="controls" width="260" height="200"
+           style="border:1px solid #aaa;"> </video>
+    <video [src]="" controls="controls" width="260" height="200"
+           style="border:1px solid #aaa; margin-left:5px;"> </video>
+    <video [src]="" controls="controls" width="260" height="200"
+           style="border:1px solid #aaa;"> </video>
+  </div>
+
+</div>
+

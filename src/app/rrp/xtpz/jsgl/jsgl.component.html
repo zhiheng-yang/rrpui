@@ -1,0 +1,91 @@
+<div *ngIf="operation_Au.indexOf(4)!=-1">
+<button *ngIf="operation_Au.indexOf(1)!=-1" class="topbutton" (click)="showModal()"><span>+ 增加</span></button>
+<nz-modal class="modal-help" [(nzVisible)]="isVisible" nzTitle="增加" (nzOnCancel)="handleCancel()"  (nzOnOk)="add(description)">
+  <!--  <label>姓名:&nbsp;</label> <input nz-input  [(ngModel)]="des" />-->
+
+  <label>身份：</label><input #description /><br>
+
+  <nz-table>
+    <thead>
+    <tr>
+<!--      <th></th>-->
+<!--      ngFor之后变成不同行，奇怪-->
+<!--      <th>增加</th>-->
+<!--      <th>删除</th>-->
+<!--      <th>修改</th>-->
+<!--      <th>查看</th>-->
+<!--      <th>查看</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let menu of menus">
+      <td>{{ menu.title }}</td>
+      <td *ngFor="let operation of operations">
+<!--        这两种都有一点小问题。。。-->
+<!--        <label nz-radio ngModel [ngModel]="true" (click)="getInfo(menu, operation, $event.target.checked)">{{ operation.name }}</label>-->
+<!--        <label nz-checkbox (click)="getInfo(menu, operation, checked1.value)" value="checked1">{{ operation.name }}</label>-->
+
+        <input type="checkbox" (click)="joinAddMenus(menu, operation, $event.target.checked)"/><label>{{ operation.name }}</label><br>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+</nz-modal>
+
+<!--<p> <br> 筛选： <input id="filterName" name="filterName"> <span (click)="search()">搜索</span> <br> </p>-->
+<nz-table #basicTable [nzData]="roles">
+  <thead>
+  <tr id="show">
+    <th>序号</th>
+    <th>权限</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let role of basicTable.data">
+    <td>{{basicTable.data.indexOf(role) +1 }}</td>
+    <td>{{ role.description }}</td>
+    <td>
+      <button *ngIf="operation_Au.indexOf(2)!=-1" nz-button [nzType]="'primary'" (click)="delete(role.id)"><span>删除</span></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button *ngIf="operation_Au.indexOf(3)!=-1" nz-button [nzType]="'primary'" (click)="showUpdateModal(role)"><span>修改权限</span></button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+
+<nz-modal class="modal-help" [(nzVisible)]="updateVisible" nzTitle="修改" (nzOnCancel)="handleUpdateCancel()" (nzOnOk)="update()">
+<!--  可以提前用双向数据绑定-->
+<!--  <label ><p>身份：</p></label><input value="请输入新名称" #newDescription/><br>-->
+
+  <nz-table #Table2 [nzData]="menus">
+    <thead>
+    <tr>
+<!--      <th></th>-->
+<!--      &lt;!&ndash;      ngFor之后变成不同行，奇怪&ndash;&gt;-->
+<!--      <th>增加</th>-->
+<!--      <th>删除</th>-->
+<!--      <th>修改</th>-->
+<!--      <th>查看</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let menu2 of Table2.data">
+      <td width="10%">{{ menu2.title }}</td>
+      <ng-container *ngFor="let operation2 of operations">
+        <td width="10%">
+          <div *ngIf="checkDic2[menu2.title+'$'+operation2.name]">
+            <input type="checkbox" [(ngModel)]="checkDic[menu2.id+'$'+operation2.id]" [checked]="checkDic[menu2.id+'$'+operation2.id]" (click)="show()"/><label>{{ operation2.name }}</label><br>
+          </div>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </nz-table>
+</nz-modal>
+
+
+</div>

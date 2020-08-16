@@ -1,0 +1,40 @@
+<div class="left">
+  <div style="margin-top: 12px">
+    <span (click)="returnchina()" class="topbutton"
+          [ngStyle]="{ 'display':(regionOptions == chinaOptions)? 'none':'block','width':'100px',
+          'padding-top':'3px','font-weight':'bolder'}">返回全国</span>
+    <div #map id="map" echarts [options]="regionOptions" ></div>
+  </div>
+</div>
+<div class="right">
+  <nz-list *ngIf="!cityCompany" style="width: 250px;color:#b1b1b1" [nzDataSource]="data" nzBordered [nzHeader]="header"    nzSize="small" [nzFooter]="nzTitle" [nzRenderItem]="defaultItem">
+    <ng-template #defaultItem let-item>
+      <nz-list-item *ngIf="item.value>0" style="height: 20px;font-size: 12px; color:#b1b1b1;">
+        <div style="display: inline-block;width: 80px">
+          <nz-progress [nzPercent]="(item.value/num * 100)"  [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#108ee9' }" [nzShowInfo]="false" nzSize="small"></nz-progress>
+        </div>
+        <div style="display: inline-block;margin-left: 8px">
+          <div style="display: inline-block">{{ item.name}}</div><span style="width: 4px;display: inline-block"></span>
+          <div style="display: inline-block;font-weight: bold">{{ item.value}}</div>家工厂
+        </div>
+      </nz-list-item>
+    </ng-template>
+    <ng-template #nzTitle>
+      <a (click)="vote(true)">{{ footer }}</a>
+    </ng-template>
+  </nz-list>
+  <nz-list *ngIf="cityCompany" style="width: 250px;color:#b1b1b1" [nzDataSource]="cityCompany" nzBordered [nzHeader]="header"    nzSize="small" [nzFooter]="nzTitle" [nzRenderItem]="defaultItem">
+    <ng-template #defaultItem let-item>
+      <nz-list-item style="height: 20px;font-size: 12px; color:#b1b1b1;">
+        <div style="display: inline-block">
+          <div style="display: inline-block">{{ item.companyId.name}}</div><span style="width: 8px;display: inline-block"></span>
+          <div style="display: inline-block;font-weight: bold">{{ item.robot.id}}</div>
+        </div>
+      </nz-list-item>
+    </ng-template>
+    <ng-template #nzTitle>
+      <a (click)="vote(true)">{{ footer }}</a>
+    </ng-template>
+  </nz-list>
+</div>
+

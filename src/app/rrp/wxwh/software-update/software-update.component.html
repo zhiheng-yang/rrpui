@@ -1,0 +1,36 @@
+<div *ngIf="operation.indexOf(4)!=-1">
+<button *ngIf="operation.indexOf(1)!=-1" nz-button [nzType]="'primary'" (click)="showModal1()"><span>增加</span></button>
+<nz-modal [(nzVisible)]="isVisible1" nzTitle="add" (nzOnCancel)="handleCancel1()" (nzOnOk)="add()">
+  <label>软件包名称:&nbsp;</label> <input nz-input  [(ngModel)]="des" />
+</nz-modal>
+
+<nz-table #basicTable [nzData]="softwareUpgrades" nzBordered>
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>软件包名称</th>
+    <th>时间</th>
+    <th>操作</th>
+    <th>升级</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.id }}</td>
+    <td>{{ data.description }}</td>
+    <td>{{ data.time | date:'yyyy-MM-dd'}}</td>
+    <td>
+      <button *ngIf="operation.indexOf(2)!=-1" nz-button [nzType]="'primary'" (click)="delete(data)"><span>删除</span></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button *ngIf="operation.indexOf(3)!=-1" nz-button [nzType]="'primary'" (click)="showModal(data)"><span>修改</span></button>
+    </td>
+    <td>
+      <button nz-button>软件升级</button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="update" (nzOnCancel)="handleCancel()" (nzOnOk)="update()">
+  <label>软件包名称:&nbsp;</label> <input *ngIf="softwareUpgrade" [(ngModel)]="this.softwareUpgrade.description"/>
+</nz-modal>
+</div>

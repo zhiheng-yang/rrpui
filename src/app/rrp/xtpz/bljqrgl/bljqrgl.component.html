@@ -1,0 +1,165 @@
+<app-querylist (onQuery)="onquery($event)" [robotManagement]="true"></app-querylist>
+<div *ngIf="operation.indexOf(4)!=-1">
+<button *ngIf="operation.indexOf(1)!=-1" class="topbutton" (click)="showModal1()"><span>+ 增加</span></button>
+<nz-modal [(nzVisible)]="isVisible1" nzTitle="增加机器人" (nzOnCancel)="handleCancel1()" (nzOnOk)="add()">
+  <label>机器名称:&nbsp;</label> <input nz-input  [(ngModel)]="name" />
+  <label>唯一标识:&nbsp;</label> <input nz-input  [(ngModel)]="id" />
+  <label>归属企业:&nbsp;</label>
+  <select [(ngModel)]="company">
+    <option *ngFor="let obj of companys" [ngValue]="obj">{{obj.name}}</option>
+  </select><br>
+  <label>使用方式:&nbsp;</label>
+  <select [(ngModel)]="way">
+    <option [ngValue]="ways[0]">{{ways[0]}}</option>
+    <option [ngValue]="ways[1]">{{ways[1]}}</option>
+    <option [ngValue]="ways[2]">{{ways[2]}}</option>
+  </select>
+  <br>
+  <label>生产线:&nbsp;</label> <input nz-input  [(ngModel)]="shengchanxian" />
+</nz-modal>
+
+<nz-table #basicTable [nzData]="robots">
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>机器人名称</th>
+    <th>唯一标识</th>
+    <th>归属企业</th>
+    <th>使用方式</th>
+    <th>使用状态</th>
+    <th>当前生产线</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ basicTable.data.indexOf(data) + 1 }}</td>
+    <td>{{ data.name }}</td>
+    <td>{{ data.id}}</td>
+    <td>{{ data.belongingCompany.name}}</td>
+    <td>{{ data.way}}</td>
+    <td>{{ data.use_situation}}</td>
+    <td>{{ data.shengchanxian}}</td>
+    <td>
+      <button *ngIf="operation.indexOf(3)!=-1" nz-button [nzType]="'primary'" (click)="showModal(data)"><span>修改</span></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button *ngIf="operation.indexOf(2)!=-1" nz-button [nzType]="'primary'" (click)="delete(data)"><span>删除</span></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button *ngIf="data.ways!=='租赁'" [disabled]="data.way === '已租赁' || data.way === '购买'" nz-button [nzType]="'primary'" (click)="showModal2(data)">租赁</button>
+    </td>
+  </tr>
+
+
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="修改机器人信息" (nzOnCancel)="handleCancel()" (nzOnOk)="update()">
+    <label>机器名称:&nbsp;</label> <input nz-input *ngIf="robot" [(ngModel)]="robot.name"/>
+    <label>归属企业:&nbsp;</label>
+    <div>
+      <select [(ngModel)]="this.robot.belongingCompany" *ngIf="robot">
+        <option *ngFor="let obj of companys" [ngValue]="obj" >{{obj.name}}</option>
+      </select>
+    </div>
+    <label>使用方式:&nbsp;</label>
+    <select *ngIf="robot" [(ngModel)]="this.robot.way">
+      <option [ngValue]="ways[0]">{{ways[0]}}</option>
+      <option [ngValue]="ways[1]">{{ways[1]}}</option>
+      <option [ngValue]="ways[2]">{{ways[2]}}</option>
+    </select>
+  </nz-modal>
+
+
+  <nz-modal [(nzVisible)]="isVisible2" nzTitle="机器人租赁" (nzOnCancel)="handleCancel2()" (nzOnOk)="zulin()"
+            [nzFooter]="modalFooter" >
+    <form nz-form *ngIf="add1" id="form1">
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">机器人所属公司</nz-form-label>
+          <nz-form-control>
+            <input [disabled]="true" nz-input name="belongingCompany" [(ngModel)]="robot.belongingCompany.name" />
+          </nz-form-control>
+        </nz-form-item >
+      </div>
+
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">机器人名称</nz-form-label>
+          <nz-form-control>
+            <input [disabled]="true" nz-input name="name" [(ngModel)]="robot.name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">租用公司</nz-form-label>
+          <nz-form-control>
+            <nz-select name="company" [(ngModel)]="company" >
+              <nz-option *ngFor="let obj of companys" [nzValue]="obj" [nzLabel]="obj.name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">合同编号</nz-form-label>
+          <nz-form-control>
+            <input nz-input name="contractId" [(ngModel)]="contractId" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">合同时间</nz-form-label>
+          <nz-form-control>
+            <nz-range-picker  name="dateRange" [(ngModel)]="dateRange" ></nz-range-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">月费用</nz-form-label>
+          <nz-form-control>
+            <input nz-input name="costMonth" [(ngModel)]="costMonth" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">缴费金额及方式</nz-form-label>
+          <nz-form-control>
+            <input nz-input name="costWay" [(ngModel)]="costWay" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-row>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">联系人</nz-form-label>
+          <nz-form-control>
+            <input nz-input name="connector" [(ngModel)]="connector" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </form>
+    <div *ngIf="add2" id="form2">
+      <form nz-form>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">上传合同</nz-form-label>
+          <nz-form-control>
+            <nz-upload [nzShowUploadList]="true" [nzAction]="uploadUrl" [nzAccept]="'.pdf'" (nzChange)="handleChange($event)">
+              <button style="width: 200px" nz-button><i nz-icon nzType="upload"></i><span>点击上传</span></button>
+            </nz-upload>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+    <ng-template #modalFooter id="form3">
+      <button *ngIf="add1" nz-button nzType="primary" (click)="modelAdd()" >下一步</button>
+      <button *ngIf="add2" nz-button nzType="primary" (click)="modelAdd()" >上一步</button>
+      <button *ngIf="add2" nz-button nzType="primary" (click)="zulin()" >完成</button>
+    </ng-template>
+  </nz-modal>
+  </tbody>
+</nz-table>
+</div>

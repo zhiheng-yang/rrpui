@@ -1,0 +1,68 @@
+  <app-querylist style="float: left" (onQuery)="onquery($event)"></app-querylist>
+  &nbsp;&nbsp;&nbsp;<button style="float: left; margin-top:15px;width: 80px;height:30px" (click)="produce()">启动生产</button>
+  &nbsp;&nbsp;&nbsp; <button style="margin-top:15px;width: 80px;height:30px" *ngIf="operation.indexOf(1)!=-1" class="topbutton" (click)="showModal1()"><span>增加</span></button>
+  <nz-modal [(nzVisible)]="isVisible1" nzTitle="增加" (nzOnCancel)="handleCancel1()" (nzOnOk)="add()">
+    <nz-table #basicTable1 [nzData]="benchs">
+      <thead>
+      <tr>
+        <th></th>
+        <th>序号</th>
+        <th>模台编号</th>
+        <th>隶属机器人</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable1.data">
+        <td><input type='checkbox' (click)="clickItem(data.id)"/></td>
+        <td>{{ data.id }}</td>
+        <td>{{ data.number }}</td>
+        <td>{{ data.robot.name}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </nz-modal>
+
+  <div *ngIf="operation.indexOf(4)!=-1">
+<nz-table #basicTable [nzData]="benchDatas">
+  <thead>
+  <tr>
+    <th></th>
+    <th>序号</th>
+    <th>状态</th>
+    <th>模台编号</th>
+    <th>参数序列号</th>
+    <th>设置时间</th>
+    <th>隶属机器人</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td><input (click)="checkProduce(data.id)" type='checkbox'/></td>
+    <td>{{ data.id }}</td>
+    <td  >
+        <i *ngIf="data.state == '0';" nz-icon style="color: hotpink">
+          <svg t="1589694540104" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10877" width="24" height="24"><path d="M512 950.857143c241.371429 0 438.857143-197.485714 438.857143-438.857143s-197.485714-438.857143-438.857143-438.857143-438.857143 197.485714-438.857143 438.857143 197.485714 438.857143 438.857143 438.857143z m0 73.142857c-285.257143 0-512-226.742857-512-512s226.742857-512 512-512 512 226.742857 512 512-226.742857 512-512 512z m0-658.285714c80.457143 0 146.285714 65.828571 146.285714 146.285714s-65.828571 146.285714-146.285714 146.285714-146.285714-65.828571-146.285714-146.285714 65.828571-146.285714 146.285714-146.285714z" fill="#42A5F5" p-id="10878"></path></svg>
+        </i>
+        <i *ngIf="data.state == '1';" nz-icon style="color: hotpink">
+          <svg t="1589694894735" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13310" width="24" height="24"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#00C653" p-id="13311"></path><path d="M455.424 595.072l237.6-237.584a48 48 0 0 1 67.872 67.888l-271.52 271.52a47.84 47.84 0 0 1-33.952 14.064 47.84 47.84 0 0 1-33.92-14.064l-158.4-158.4a48 48 0 0 1 67.872-67.872l124.448 124.448z" fill="#FFFFFF" p-id="13312"></path></svg>
+        </i>
+        <i *ngIf="data.state == '2';" nz-icon style="color: hotpink">
+          <svg t="1595149340165" class="icon" viewBox="0 0 1820 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1255" width="24" height="24"><path d="M1206.423704 493.416296L646.447407 80.497778c-4.835556-3.508148-10.524444-5.30963-16.213333-5.30963-4.171852 0-8.438519 0.948148-12.325926 2.939259-9.197037 4.645926-14.980741 14.032593-14.980741 24.367408V921.6c0 10.24 5.783704 19.626667 14.885926 24.367407 3.887407 1.991111 8.154074 2.939259 12.420741 2.93926 5.688889 0 11.282963-1.801481 16.023704-5.214815l559.976296-406.186667c7.016296-5.12 11.282963-13.274074 11.282963-21.997037 0.094815-8.722963-4.077037-16.877037-11.093333-22.091852z" p-id="1256"></path></svg>
+        </i>
+    </td>
+    <td>{{ data.bench.number }}</td>
+    <td>{{ data.number}}</td>
+    <td>{{ data.time | date:'yyyy-MM-dd'}}</td>
+    <td>{{ data.bench.robot.name}}</td>
+    <td>
+      <button *ngIf="operation.indexOf(2)!=-1" nz-button (click)="delete(data)"><span>删除</span></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a (click)="showModal(data)"><button nz-button>生产参数</button></a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<app-sccs></app-sccs>
+
+</div>

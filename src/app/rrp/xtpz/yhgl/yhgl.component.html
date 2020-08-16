@@ -1,0 +1,96 @@
+<app-querylist [robotVisible]="false" (onQuery)="onquery($event)"></app-querylist>
+<div *ngIf="operation.indexOf(4)!=-1">
+<button *ngIf="operation.indexOf(1)!=-1" class="topbutton" (click)="showModal1()"><span>+ 增加</span></button>
+<nz-modal [(nzVisible)]="isVisible1" nzTitle="add" (nzOnCancel)="handleCancel()" (nzOnOk)="add(name,username,password,contact,company,role)">
+<!--  <label>姓名:&nbsp;</label> <input nz-input  [(ngModel)]="des" />-->
+
+  <label>姓名：</label><input #name /><br>
+  <label>用户名：</label><input #username /><br>
+  <label>密码：</label><input #password /><br>
+  <label>联系方式：</label><input #contact /><br>
+<!--  <label>最近登陆时间：</label><input #login_time /><br>-->
+
+  <label>所属公司：</label>
+  <select [(ngModel)]="company">
+    <option *ngFor="let company of companies" [ngValue]="company" >{{company.name}}</option>
+  </select> <br>
+
+<!--  <label>身份：</label>-->
+<!--  <select [(ngModel)]="role">-->
+<!--    <option *ngFor="let role of roles" [ngValue]="role" >{{role.description}}</option>-->
+<!--  </select> <br>-->
+  <label>身份：</label>
+  <select [(ngModel)]="role">
+    <option *ngFor="let role of roles" [ngValue]="role" >{{role.description}}</option>
+  </select> <br>
+</nz-modal>
+
+
+
+<nz-modal [(nzVisible)]="updateVisible" nzTitle="修改" (nzOnCancel)="updateHandleCancel()" (nzOnOk)="update()">
+
+  <label>姓名：</label><input [(ngModel)]="this.user.name" /><br>
+  <label>用户名：</label><input [(ngModel)]="this.user.username" /><br>
+  <label>密码：</label><input type="password" [(ngModel)]="this.user.password" /><br>
+  <label>联系方式：</label><input [(ngModel)]="this.user.contact" /><br>
+
+  <label>所属公司：</label>
+  <select [(ngModel)]="user.company">
+    <option *ngFor="let company of companies" [ngValue]="company" >{{company.name}}</option>
+  </select> <br>
+
+  <label>身份：</label>
+  <select [(ngModel)]="user.role">
+    <option *ngFor="let role of roles" [ngValue]="role" >{{role.description}}</option>
+  </select> <br>
+</nz-modal>
+
+
+  <!--<p> <br> 筛选： <input id="filterName" name="filterName"> <span (click)="search()">搜索</span> <br> </p>-->
+
+
+<nz-table #basicTable [nzData]="users">
+  <thead>
+  <tr id="show">
+    <th>序号</th>
+    <th>用户名</th>
+    <th>姓名</th>
+    <th>最近登陆时间</th>
+    <th>身份</th>
+    <th>所在企业</th>
+    <th>企业类型</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{basicTable.data.indexOf(data)+1}}</td>
+    <td>{{ data.username }}</td>
+    <td>{{ data.name }}</td>
+    <td>{{ data.login_time|date:'yyyy-MM-dd HH:mm'}}</td>
+    <td>{{ data.role.description}}</td>
+    <td>{{ data.company.name}}</td>
+    <td>{{ data.company.companyType.type}}</td>
+<!--    <td>{{ data.login_time | date:'yyyy-MM-dd'}}</td>-->
+    <td>
+      <button *ngIf="operation.indexOf(2)!=-1" nz-button [nzType]="'primary'" (click)="delete(data.id)"><span>删除</span></button>
+
+<!--      <button nz-button [nzType]="'primary'" (click)="showDeleteModal()"><span>删除</span></button>-->
+<!--      <nz-modal [(nzVisible)]="deleteVisible" nzTitle="add" (nzOnCancel)="deleteHandleCancel()" (nzOnOk)="delete(data.id)">-->
+<!--        确认删除用户？-->
+<!--      </nz-modal>-->
+
+
+      <button *ngIf="operation.indexOf(3)!=-1" nz-button [nzType]="'primary'" (click)="resetPassword(data.id)"><span>重置密码</span></button>
+      <button *ngIf="operation.indexOf(3)!=-1" nz-button [nzType]="'primary'" (click)="showUpdateModal(data.id)"><span>修改身份</span></button>
+      <!--      <button nz-button [nzType]="'primary'" (click)="showResetModal()"><span>重置密码</span></button>-->
+<!--      <nz-modal [(nzVisible)]="resetVisible" nzTitle="add" (nzOnCancel)="resetHandleCancel()" (nzOnOk)="resetPassword(data.id)">-->
+<!--        确认重制该用户的密码？-->
+<!--      </nz-modal>-->
+    </td>
+
+  </tr>
+  </tbody>
+</nz-table>
+
+</div>

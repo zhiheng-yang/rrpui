@@ -1,0 +1,190 @@
+@topBarHeight: 48px;
+@sideWidth: 200px;
+@bg-color:#11132a;
+@shadow: 0 0 8px rgba(0, 0, 0, .35);
+@default-radius: 4px;
+@blue-6: #189033;//特殊按钮
+@dark: #20262a;
+@white: #fff;
+*{
+  padding:0;
+  margin:0;
+  color:#b1b1b1;
+}
+.header {
+  width: 100%;
+  min-width:1100px;
+  line-height: 48px;
+  background:#1e2340;
+  box-shadow: @shadow;
+}
+#logo{
+    display: inline-block;
+    width: 200px;
+    height: 38px;
+    background-image: url(/assets/src/img/logo.jpg);
+    background-size: 200px 38px;
+    margin: 5px;
+  float:left;
+  }
+#icon{
+    display: inline-block;
+    width: 100px;
+    height: 48px;
+    float:left
+  }
+#icon .trigger {
+  margin-right: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 46px;
+}
+#icon .trigger:hover {
+  color: #1890ff;
+}
+//.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab {
+ //    margin: 0 !important;
+  //   padding: 2px 5px 0!important;
+
+   //background: @dark;
+//   }
+//.ant-tabs-tab-prev.ant-tabs-tab-arrow-show, .ant-tabs-tab-next.ant-tabs-tab-arrow-show {
+//background: @dark;
+//  color: @white!important;
+//  font-size: 12px;
+//}
+
+.header-dropdown-menu {
+  background-color: whitesmoke;
+//margin-top: 12px;
+  padding: 2px 0;
+  box-shadow: @shadow;
+  border-radius: @default-radius;
+}
+
+#user {
+  height: 48px;
+  float: right;
+  display: inline-block;
+}
+
+.header-menu {
+  line-height: 48px;
+  margin: -8px 0 -4px;
+  z-index: 1;
+}
+nz-layout{background: #0f1128; margin: 0}
+.out-div {  //左菜单
+  -ms-overflow-style: none;
+  overflow-y: auto;
+  background: #0f1128;
+
+}
+
+.out-div::-webkit-scrollbar {
+  width: 0 !important
+
+}
+.out-div ul {
+   background:#1e2340;
+   margin:5px;
+   margin-top:10px;
+   border-radius:10px;
+   box-shadow: @shadow;
+   list-style: none;
+   height:95%;
+   width:95%;
+   line-height: 45px;
+  padding-top:10px;
+ }
+.out-div ul li{
+  display:inline-block;
+  width:85%;
+  height:45px;
+  margin-left:10px;
+  border-bottom:2px solid #335; text-align:center
+}
+.out-div ul li:hover{
+  background: #001529;
+  font-weight: bolder;
+}
+
+
+.inner-layout {
+  height: 100%;
+  padding: 0;
+  //background:#1e2340;
+  margin:5px;
+  margin-top:10px;
+  //border-radius:10px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+nz-content {
+  margin-top:5px;
+  height: 100%;
+}
+
+
+#mainNav {
+  display: inline-block;
+  height: 48px;
+  line-height: 48px; /*设置行高 ， 使内部内容垂直中间显示*/
+  width:650px;
+}
+
+.nav { /*设置无序列表ul显示为内联样式inline,向左浮动*/
+  float: left;
+  list-style: none;
+}
+
+.nav li { /*设置向左浮动 ，这样li元素全部会在一行，显示同样设置为内联样式*/
+  float: left;
+  margin-right: 5px;
+  position: relative; /*使jnNav相对于LI 偏移*/
+  z-index: 100; /*防止其他层覆盖*/
+}
+
+.menu span {
+  display: inline-block;
+  padding: 0 12px;
+  margin:0;
+  color: #9e9d9e;
+  font-size: 14px;
+  text-decoration: none; /*去除文字下划线*/
+}
+
+.menu span:hover { /*鼠标滑动设置背景色  ，这里定义所有的A，可以设置ID具体定义*/
+  background: #001427;
+  cursor: pointer;
+  font-weight:bold;
+}
+
+.jnNav{
+  background-color: #fff; /*设置每个二级菜单，背景色为白色*/
+  border: 1px solid #b1b1b1; /*边框为1个像素及颜色*/
+  border-top: 0; /*取消上方边框*/
+  left: 360px; /*相对于父元素LI，左侧对齐*/
+  overflow: hidden; /*内容超出范围隐藏*/
+  position: absolute; /*绝对定位，相对于LI*/
+  top: 58px; /*LI的高度为37PX，这里设置37px，刚好与li底部衔接*/
+  z-index: 20; /*防止覆盖*/
+  display:none;
+  /*float: left; 左侧浮动*/
+  line-height: 25px;
+
+  padding: 0px 12px; /*左右内部各填充12px，上下填充10px*/
+  width:700px;
+  border-top-style: none;
+}
+
+.jnNav dd { /*设置自定义列表的条目，左侧浮动，每个条目的总宽度为364PX,内部无填充*/
+  float: left;
+  overflow: hidden;
+  padding: 0px;
+  border-right: 1px solid #ccc; /*右侧设置边框，用于隔开每个内容*/
+  color: #666; /*设置字体颜色*/
+  font-size: 12px;
+}

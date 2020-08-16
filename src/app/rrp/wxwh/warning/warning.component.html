@@ -1,0 +1,168 @@
+<app-querylist (onQuery)="onquery($event)"></app-querylist>
+<!--<div *ngIf="operation.indexOf(4)!=-1">-->
+<!--  <nz-table #basicTable [nzData]="warnings" [nzScroll]="{x:'1600px'}">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>序号</th>-->
+<!--      <th>报警号</th>-->
+<!--      <th>内容</th>-->
+<!--      <th>所属机器人</th>-->
+<!--      <th>时间</th>-->
+<!--      <th>操作</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let data of basicTable.data" style="background:#0f1128;">-->
+<!--      <td>{{ data.id }}</td>-->
+<!--      <td>{{ data.number.id }}</td>-->
+<!--      <td>{{ data.number.description}}</td>-->
+<!--      <td>{{ data.robot.name}}</td>-->
+<!--      <td>{{ data.time | date:'yyyy-MM-dd' }}</td>-->
+<!--      <td>-->
+<!--        &lt;!&ndash;        <div style="display: inline-block">&ndash;&gt;-->
+<!--        &lt;!&ndash;          <button nz-button (click)="showModal(data)"><span>编辑</span></button>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <nz-divider nzType="vertical"></nz-divider>&ndash;&gt;-->
+<!--        <button nz-button (click)="delete(data)"><span>删除</span></button>-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--    &lt;!&ndash;    <nz-modal class="modal-help" *ngIf="warning" [(nzVisible)]="isVisible" nzTitle="update" (nzOnCancel)="handleCancel()"&ndash;&gt;-->
+<!--    &lt;!&ndash;              (nzOnOk)="update()">&ndash;&gt;-->
+<!--    &lt;!&ndash;    </nz-modal>&ndash;&gt;-->
+<!--  </nz-table>-->
+<!--</div>-->
+<div *ngIf="operation.indexOf(4)!=-1">
+<nz-table #basicTable [nzData]="warnings" >
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>报警号</th>
+    <th>内容</th>
+    <th>所属机器人</th>
+    <th>时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.id }}</td>
+    <td>{{ data.num.id}}</td>
+    <td>{{ data.num.description}}</td>
+    <td>{{ data.robot.name}}</td>
+    <td>{{ data.time | date:'yyyy-MM-dd' }}</td>
+    <td>
+      <button nz-button (click)="delete(data)"><span>删除</span></button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+</div>
+
+
+
+<!--<nz-table #basicTable [nzData]="warnings" [nzScroll]="{x:'1600px'}">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th nzwidth="40px">序号</th>-->
+<!--    <th nzwidth="100px">时间</th>-->
+<!--    <th width="120">机器人</th>-->
+<!--    <th nzwidth="50px">大车（X轴）进限位开关</th>-->
+<!--    <th nzwidth="50px">大车（X轴）退限位开关</th>-->
+<!--    <th nzwidth="50px">小车（Y轴）进限位开关</th>-->
+<!--    <th nzwidth="50px">小车（Y轴）退限位开关</th>-->
+<!--    <th nzwidth="50px">料斗上升限位</th>-->
+<!--    <th nzwidth="50px">料斗下降限位</th>-->
+<!--    <th nzwidth="50px">X接料原点</th>-->
+<!--    <th nzwidth="50px">Y接料原点</th>-->
+<!--    <th nzwidth="50px">空气压力报警</th>-->
+<!--    <th nzwidth="50px">碰撞保护</th>-->
+<!--    <th nzwidth="50px">搅拌变频故障</th>-->
+<!--    <th nzwidth="50px">1下料变频故障</th>-->
+<!--    <th nzwidth="50px">2下料变频故障</th>-->
+<!--    <th nzwidth="50px">3下料变频故障</th>-->
+<!--    <th nzwidth="50px">4下料变频故障</th>-->
+<!--    <th nzwidth="50px">5下料变频故障</th>-->
+<!--    <th nzwidth="50px">6下料变频故障</th>-->
+<!--    <th nzwidth="50px">7下料变频故障</th>-->
+<!--    <th nzwidth="50px">8下料变频故障</th>-->
+<!--    <th nzwidth="50px">X向变频故障</th>-->
+<!--    <th nzwidth="50px">Y向变频故障</th>-->
+<!--    <th nzwidth="50px">升降过载</th>-->
+<!--    <th nzwidth="50px">振动过载</th>-->
+<!--    <th nzwidth="50px">润滑泵过载</th>-->
+<!--    <th nzwidth="50px">实际下料与理论下料不匹配</th>-->
+<!--    <th nzRight="0px" nzWidth="140px">操作</th>-->
+
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let data of basicTable.data" style="background:#0f1128;">-->
+<!--    <td>{{ data.id }}</td>-->
+<!--    <td>{{ data.time | date:'yyyy-MM-dd' }}</td>-->
+<!--    <td>{{ data.robot.name}}</td>-->
+<!--    <td>{{ data.machine_signal0 }}</td>-->
+<!--    <td>{{ data.machine_signal1 }}</td>-->
+<!--    <td>{{ data.machine_signal2 }}</td>-->
+<!--    <td>{{ data.machine_signal3 }}</td>-->
+<!--    <td>{{ data.machine_signal4 }}</td>-->
+<!--    <td>{{ data.machine_signal5 }}</td>-->
+<!--    <td>{{ data.machine_signal6 }}</td>-->
+<!--    <td>{{ data.machine_signal7 }}</td>-->
+<!--    <td>{{ data.machine_signal8 }}</td>-->
+<!--    <td>{{ data.machine_signal9 }}</td>-->
+<!--    <td>{{ data.machine_signal10 }}</td>-->
+<!--    <td>{{ data.machine_signal11 }}</td>-->
+<!--    <td>{{ data.machine_signal12 }}</td>-->
+<!--    <td>{{ data.machine_signal13 }}</td>-->
+<!--    <td>{{ data.machine_signal14 }}</td>-->
+<!--    <td>{{ data.machine_signal15 }}</td>-->
+<!--    <td>{{ data.machine_signal16 }}</td>-->
+<!--    <td>{{ data.machine_signal17 }}</td>-->
+<!--    <td>{{ data.machine_signal18 }}</td>-->
+<!--    <td>{{ data.machine_signal19 }}</td>-->
+<!--    <td>{{ data.machine_signal20 }}</td>-->
+<!--    <td>{{ data.machine_signal21 }}</td>-->
+<!--    <td>{{ data.machine_signal22 }}</td>-->
+<!--    <td>{{ data.machine_signal23 }}</td>-->
+<!--    <td>{{ data.machine_signal24 }}</td>-->
+
+<!--    <td nzRight="0px">-->
+<!--      <div style="display: inline-block">-->
+<!--        <button nz-button (click)="showModal(data)"><span>编辑</span></button>-->
+<!--        <nz-divider nzType="vertical"></nz-divider>-->
+<!--        <button nz-button (click)="delete(data)"><span>删除</span></button>-->
+<!--      </div>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--  <nz-modal class="modal-help" *ngIf="warning" [(nzVisible)]="isVisible" nzTitle="update" (nzOnCancel)="handleCancel()"-->
+<!--            (nzOnOk)="update()">-->
+<!--    <label>序号</label><input [(ngModel)]="this.warning.id"/>-->
+<!--    <label>大车（X轴）进限位开关</label><input [(ngModel)]="this.warning.machine_signal0"/>-->
+<!--    <label>大车（X轴）退限位开关</label><input [(ngModel)]="this.warning.machine_signal1"/>-->
+<!--    <label>小车（Y轴）进限位开关</label><input [(ngModel)]="this.warning.machine_signal2"/>-->
+<!--    <label>小车（Y轴）退限位开关</label><input [(ngModel)]="this.warning.machine_signal3"/>-->
+<!--    <label>料斗上升限位</label><input [(ngModel)]="this.warning.machine_signal4"/>-->
+<!--    <label>料斗下降限位</label><input [(ngModel)]="this.warning.machine_signal5"/>-->
+<!--    <label>X接料原点</label><input [(ngModel)]="this.warning.machine_signal6"/>-->
+<!--    <label>Y接料原点</label><input [(ngModel)]="this.warning.machine_signal7"/>-->
+<!--    <label>空气压力报警</label><input [(ngModel)]="this.warning.machine_signal8"/>-->
+<!--    <label>碰撞保护</label><input [(ngModel)]="this.warning.machine_signal9"/>-->
+<!--    <label>搅拌变频故障</label><input [(ngModel)]="this.warning.machine_signal10"/>-->
+<!--    <label>1下料变频故障</label><input [(ngModel)]="this.warning.machine_signal11"/>-->
+<!--    <label>2下料变频故障</label><input [(ngModel)]="this.warning.machine_signal12"/>-->
+<!--    <label>3下料变频故障</label><input [(ngModel)]="this.warning.machine_signal13"/>-->
+<!--    <label>4下料变频故障</label><input [(ngModel)]="this.warning.machine_signal14"/>-->
+<!--    <label>5下料变频故障</label><input [(ngModel)]="this.warning.machine_signal15"/>-->
+<!--    <label>6下料变频故障</label><input [(ngModel)]="this.warning.machine_signal16"/>-->
+<!--    <label>7下料变频故障</label><input [(ngModel)]="this.warning.machine_signal17"/>-->
+<!--    <label>8下料变频故障</label><input [(ngModel)]="this.warning.machine_signal18"/>-->
+<!--    <label>X向变频故障</label><input [(ngModel)]="this.warning.machine_signal19"/>-->
+<!--    <label>Y向变频故障</label><input [(ngModel)]="this.warning.machine_signal20"/>-->
+<!--    <label>升降过载</label><input [(ngModel)]="this.warning.machine_signal21"/>-->
+<!--    <label>振动过载</label><input [(ngModel)]="this.warning.machine_signal22"/>-->
+<!--    <label>润滑泵过载</label><input [(ngModel)]="this.warning.machine_signal23"/>-->
+<!--    <label>实际下料与理论下料不匹配</label><input [(ngModel)]="this.warning.machine_signal24"/>-->
+<!--  </nz-modal>-->
+<!--</nz-table>-->
